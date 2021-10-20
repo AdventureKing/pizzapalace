@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import {loginUser} from '../../src/api/auth';
+import {loginUser} from '../api/auth';
 
 const Title = styled.div`
     font-size: 1.5em;
