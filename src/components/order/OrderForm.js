@@ -8,6 +8,7 @@ import {
     FormInput,
     ErrorMessage
     } from './OrderFormStyles';
+import useToken from '../../context/useToken';
 
 export const OrderForm = () => {
     const {
@@ -16,9 +17,11 @@ export const OrderForm = () => {
         formState: { errors }
       } = useForm();
 
+      const {token} = useToken();
+      
     const onSubmit = async order => {
-      const request = await placeOrder(order);
-      console.log(request);
+      const request = await placeOrder(order, token);
+      //TODO : DO SOMETHING HERE 
     }
   
     return(

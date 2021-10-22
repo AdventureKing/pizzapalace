@@ -1,21 +1,20 @@
 
+import useToken from "../context/useToken";
 
-
-export const placeOrder = async (order) => {
-    const token = sessionStorage.token;
-    console.log(order);
-    let json =JSON.stringify({
+export const placeOrder = async (order, token) => {
+  
+    let json = JSON.stringify({
         "Crust": order.Crust,
         "Flavor": order.Flavor,
         "Size": order.Size,
-        "Table_No": Number(order.Table_No)
+        "Table_No": +order.Table_No
     });
-    console.log(json)
     return fetch('/api/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token?.access_token}`
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token}`
        },
       body: json
     })
@@ -36,7 +35,6 @@ export const placeOrder = async (order) => {
 
    export const deleteSpecificOrder = async (id) => {
      const path = '/api/orders/:id'.replace(':id', id);
-     console.log('deleteing order', path);
     return fetch(path, {
       method: 'DELETE',
       headers: {

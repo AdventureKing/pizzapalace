@@ -22,18 +22,15 @@ export const Dashboard = ({}) => {
   useEffect(() => {
     async function fetchOrders() {
       let response = await getOrders();
-      console.log('response', response);
       setOrders(response);
     }
     fetchOrders();
   },[]);
 
   const deleteOrder = async (id) => {
-    let response = await deleteSpecificOrder(id);
-    console.log(response);
+    await deleteSpecificOrder(id);
     async function fetchOrders() {
       let response = await getOrders();
-      console.log(response);
       setOrders(response);
     }
     await fetchOrders();

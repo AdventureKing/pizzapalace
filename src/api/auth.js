@@ -9,6 +9,10 @@ export const loginUser = async credentials => {
        },
       body: JSON.stringify(credentials)
     })
-      .then(data => data.json())
+      .then(async (data) => {
+        const response = await data.json();
+       return response.access_token;
+      });
+      
    }
 
