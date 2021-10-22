@@ -3,7 +3,7 @@ import Simplert from 'react-simplert'
 import {deleteSpecificOrder, getOrders} from '../api/order';
 import {OrderCard} from './order/OrderCard';
 import {BallTriangle} from "react-loading-icons";
-import {LoadingContainer, PageContainer, Title, Grid, SearchContainer, SearchInput} from './DashboardStyles'
+import {Grid, LoadingContainer, PageContainer, SearchInput, Title} from './DashboardStyles'
 
 export const Dashboard = () => {
     const [loading, setLoading] = useState(false);
@@ -16,7 +16,6 @@ export const Dashboard = () => {
         type: 'success',
         show: false
     });
-
 
 
     const handleChange = value => {
@@ -39,8 +38,7 @@ export const Dashboard = () => {
     }
 
 
-
-    useEffect( async () => {
+    useEffect(async () => {
 
         async function fetchOrders() {
             let response = await getOrders();
@@ -87,8 +85,9 @@ export const Dashboard = () => {
 
         <PageContainer>
             <Title>Current Orders</Title>
-               <SearchInput
-                style={{ marginLeft: 5 }}
+            <SearchInput
+                aria-label="search-input"
+                style={{marginLeft: 5}}
                 type="text"
                 placeholder="Type to search..."
                 value={searchText}
@@ -103,7 +102,8 @@ export const Dashboard = () => {
 
             />
             <Grid>
-                {filteredData && filteredData.map((order, i) => <OrderCard key={i} order={order} deleteOrder={deleteOrder}/>)}
+                {filteredData && filteredData.map((order, i) => <OrderCard key={i} order={order}
+                                                                           deleteOrder={deleteOrder}/>)}
             </Grid>
         </PageContainer>
     );

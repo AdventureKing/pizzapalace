@@ -3,7 +3,7 @@ import Simplert from 'react-simplert'
 import {OrderForm} from './OrderForm';
 import {AddButton, Grid, PageContainer, RemoveButton, Title} from './OrderPageStyles'
 
-export const Orders = ({logout}) => {
+export const Orders = () => {
     const [orders, setOrders] = useState(1);
     const [alert, setAlert] = useState({title: '', message: '', type: 'success', show: false});
     const addOrder = () => {
