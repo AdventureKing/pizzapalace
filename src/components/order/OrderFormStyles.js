@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
 export const Title = styled.h1`
-    color: white;
+  color: white;
 `;
 export const Container = styled.form`
-    background: #0e101c;
-    max-width: 400px;
-    margin: 20px;
-    padding: 20px;
-  `;
+  background: #000000;
+  border-radius: 25px;
+  max-width: 400px;
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid red;
+`;
 
 export const FormInput = styled.input`
   display: block;
@@ -22,21 +24,53 @@ export const FormInput = styled.input`
 `;
 
 export const FormLabel = styled.label`
-    line-height: 2;
-    text-align: left;
-    display: block;
-    margin-bottom: 13px;
-    margin-top: 20px;
-    color: white;
-    font-size: 14px;
-    font-weight: 200;
+  line-height: 2;
+  text-align: left;
+  display: block;
+  margin-bottom: 13px;
+  margin-top: 20px;
+  color: white;
+  font-size: 20px;
+  font-weight: 200;
 `;
 
 export const ErrorMessage = styled.p`
+  color: #bf1650;
 
-    color: #bf1650;
-    ::before {
+  ::before {
     display: inline;
     content: "⚠ ";
-    }
+  }
 `
+
+export const RemoveButton = styled.button`
+
+  box-shadow: inset 0px 1px 0px 0px #f29c93;
+  background-color: #fe1a00;
+  border-radius: 6px;
+  border: 1px solid #d83526;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #b23e35;
+
+  :hover {
+    background-color: #ce0100;
+  }
+
+  :active {
+    position: relative;
+    top: 1px;
+  }
+`;
+
+export const LoadingContainer = styled.div`
+  display: grid;
+  justify-content: center;
+  align-content: center;
+`;

@@ -1,7 +1,8 @@
-import React , {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import { getOrders, deleteSpecificOrder } from '../api/order';
-import { OrderCard } from './order/OrderCard';
+import Simplert from 'react-simplert'
+import {deleteSpecificOrder, getOrders} from '../api/order';
+import {OrderCard} from './order/OrderCard';
 
 const Title = styled.h1`
   margin: 20px;
@@ -16,35 +17,55 @@ const Grid = styled.div`
     "OrderForm OrderForm OrderForm";
 
 `;
-export const Dashboard = ({}) => {
-  const [orders, setOrders] = useState(null);
-  const [alert, setAlert] = useState(null);
-  useEffect(() => {
-    async function fetchOrders() {
-      let response = await getOrders();
-      setOrders(response);
-    }
-    fetchOrders();
-  },[]);
+export const Dashboard = () => {
+    const [orders, setOrders] = useState(null);
+    const [alert, setAlert] = useState({
+        title: 'Order Was Deleted',
+        message: 'The order with id  was cancelled.',
+        type: 'success',
+        show: false
+    });
 
-  const deleteOrder = async (id) => {
-    await deleteSpecificOrder(id);
-    async function fetchOrders() {
-      let response = await getOrders();
-      setOrders(response);
-    }
-    await fetchOrders();
+    useEffect(() => {
+        async function fetchOrders() {
+            let response = await getOrders();
+            setOrders(response);
+        }
 
-  };
-  
-  return(
+        fetchOrders();
+    }, []);
 
-    <div>
-    <Title>Current Orders</Title>
-    <h1>{alert && <p>alert</p>}</h1>
-      <Grid>
-        {orders && orders.map((order, i) => <OrderCard key={i} order={order} deleteOrder={deleteOrder}/>)}
-      </Grid>
-    </div>
-  );
+    const deleteOrder = async (id) => {
+        await deleteSpecificOrder(id);
+
+        async function fetchOrders() {
+            let response = await getOrders();
+            setOrders(response);
+        }
+
+        await fetchOrders();
+
+        setAlert({
+            title: 'Order Was Deleted',
+            message: 'The order with id ' + id + ' was cancelled.',
+            type: 'success',
+            show: true
+        })
+    };
+
+    return (
+
+        <div>
+            <Title>Current Orders</Title>
+            <Simplert
+                showSimplert={alert.show}
+                type={alert.type}
+                title={alert.title}
+                message={alert.message}
+            />
+            <Grid>
+                {orders && orders.map((order, i) => <OrderCard key={i} order={order} deleteOrder={deleteOrder}/>)}
+            </Grid>
+        </div>
+    );
 }
