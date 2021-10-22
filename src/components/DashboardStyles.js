@@ -24,3 +24,16 @@ export const LoadingContainer = styled.div`
   align-content: center;
   padding: 20px;
 `;
+export const SearchInput = styled.input`
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid black;
+  padding: 10px 15px;
+  margin-bottom: 40px;
+  font-size: 14px;
+`;
+
+export const SearchContainer = styled.div`
+`;
