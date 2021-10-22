@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {loginUser} from '../api/auth';
-import {Card, Container, FormLabel, FormInput, Title, PageContainer, LogInButton} from "./LoginStyles";
+import {Card, Container, FormInput, FormLabel, LogInButton, PageContainer, Title} from "./LoginStyles";
 import {CardImg} from "./order/OrderFormStyles";
 import pizzaPhoto from "../pizzaCard.png";
-
 
 
 export const Login = ({setToken}) => {
@@ -24,23 +23,23 @@ export const Login = ({setToken}) => {
 
     return (
         <PageContainer>
-        <Card>
-            <CardImg src={pizzaPhoto} alt="Avatar"/>
-            <Container onSubmit={handleSubmit}>
-                <Title>Please Log In To Place a Order</Title>
-                <FormLabel>
-                    <p>Username</p>
-                    <FormInput type="text" onChange={e => setUserName(e.target.value)}/>
-                </FormLabel>
-                <FormLabel>
-                    <p>Password</p>
-                    <FormInput type="password" onChange={e => setPassword(e.target.value)}/>
-                </FormLabel>
-                <div>
-                    <LogInButton type="submit">Log In</LogInButton>
-                </div>
-            </Container>
-        </Card>
+            <Card>
+                <CardImg src={pizzaPhoto} alt="Avatar"/>
+                <Container onSubmit={handleSubmit}>
+                    <Title>Please Log In To Place a Order</Title>
+                    <FormLabel>
+                        <p>Username</p>
+                        <FormInput type="text" onChange={e => setUserName(e.target.value)}/>
+                    </FormLabel>
+                    <FormLabel>
+                        <p>Password</p>
+                        <FormInput type="password" onChange={e => setPassword(e.target.value)}/>
+                    </FormLabel>
+                    <div>
+                        <LogInButton type="submit">Log In</LogInButton>
+                    </div>
+                </Container>
+            </Card>
         </PageContainer>
     );
 }

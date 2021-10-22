@@ -3,26 +3,9 @@ import styled from 'styled-components';
 import Simplert from 'react-simplert'
 import {deleteSpecificOrder, getOrders} from '../api/order';
 import {OrderCard} from './order/OrderCard';
-import {LoadingContainer} from "./order/OrderFormStyles";
 import {BallTriangle} from "react-loading-icons";
+import {LoadingContainer, PageContainer, Title, Grid} from './DashboardStyles'
 
-const Title = styled.h1`
-  margin: 20px;
-  text-align: center;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  grid-template-areas: 
-    "OrderForm OrderForm OrderForm";
-
-`;
-
-export const PageContainer = styled.div`
-  margin: 20px;
-`;
 export const Dashboard = () => {
     const [loading, setLoading] = useState(false);
     const [orders, setOrders] = useState(null);
@@ -39,6 +22,7 @@ export const Dashboard = () => {
             let response = await getOrders();
             setOrders(response);
         }
+
         setLoading(true);
 
         await fetchOrders();
@@ -52,6 +36,7 @@ export const Dashboard = () => {
             let response = await getOrders();
             setOrders(response);
         }
+
         setLoading(true);
         await fetchOrders();
         setLoading(false);
@@ -66,7 +51,7 @@ export const Dashboard = () => {
     if (loading) {
         return (
             <PageContainer>
-                <LoadingContainer >
+                <LoadingContainer>
                     <BallTriangle stroke="#06bcee"/>
                 </LoadingContainer>
             </PageContainer>

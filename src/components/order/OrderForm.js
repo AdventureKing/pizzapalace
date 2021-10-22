@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useForm} from "react-hook-form";
+import {useForm} from 'react-hook-form';
 import {placeOrder} from '../../api/order';
 import {BallTriangle} from 'react-loading-icons';
 import {Card, CardImg, Container, ErrorMessage, FormInput, FormLabel, LoadingContainer, Title} from './OrderFormStyles';
@@ -11,28 +11,31 @@ export const OrderForm = ({setAlert}) => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: {errors}
     } = useForm();
 
     const {token} = useToken();
     const [loading, setLoading] = useState(false);
     const createMessage = (response) => {
-        return 'Your order of a' + response.Size + ' ' + response.Crust + ' ' + response.Flavor +' was placed. Sit Tight!'
+        return 'Your order of a ' + response.Size + ' ' + response.Crust + ' ' + response.Flavor + ' was placed. Sit Tight!'
     }
     const onSubmit = async (order) => {
         setLoading(true);
         const response = await placeOrder(order, token);
         setLoading(false);
         setAlert({title: 'Order Was Placed', message: createMessage(response), type: 'success', show: true})
-
+        reset();
     }
     if (loading) {
         return (
-            <Container >
+            <Card>
+                <CardImg src={pizzaPhoto} alt="Avatar"/>
                 <LoadingContainer>
+
                     <BallTriangle/>
                 </LoadingContainer>
-            </Container>
+            </Card>
         );
 
     }
