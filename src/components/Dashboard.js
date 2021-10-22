@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Simplert from 'react-simplert'
 import {deleteSpecificOrder, getOrders} from '../api/order';
 import {OrderCard} from './order/OrderCard';
+import {Container, LoadingContainer} from "./order/OrderFormStyles";
+import {BallTriangle} from "react-loading-icons";
 
 const Title = styled.h1`
   margin: 20px;
@@ -17,7 +19,12 @@ const Grid = styled.div`
     "OrderForm OrderForm OrderForm";
 
 `;
+
+export const PageContainer = styled.div`
+  margin: 20px;
+`;
 export const Dashboard = () => {
+    const [loading, setLoading] = useState(false);
     const [orders, setOrders] = useState(null);
     const [alert, setAlert] = useState({
         title: 'Order Was Deleted',
@@ -26,13 +33,16 @@ export const Dashboard = () => {
         show: false
     });
 
-    useEffect(() => {
+    useEffect(async () => {
+
         async function fetchOrders() {
             let response = await getOrders();
             setOrders(response);
         }
+        setLoading(true);
 
-        fetchOrders();
+        await fetchOrders();
+        setLoading(false);
     }, []);
 
     const deleteOrder = async (id) => {
@@ -42,9 +52,9 @@ export const Dashboard = () => {
             let response = await getOrders();
             setOrders(response);
         }
-
+        setLoading(true);
         await fetchOrders();
-
+        setLoading(false);
         setAlert({
             title: 'Order Was Deleted',
             message: 'The order with id ' + id + ' was cancelled.',
@@ -53,9 +63,19 @@ export const Dashboard = () => {
         })
     };
 
+    if (loading) {
+        return (
+            <PageContainer>
+                <LoadingContainer >
+                    <BallTriangle stroke="#06bcee"/>
+                </LoadingContainer>
+            </PageContainer>
+        );
+
+    }
     return (
 
-        <div>
+        <PageContainer>
             <Title>Current Orders</Title>
             <Simplert
                 showSimplert={alert.show}
@@ -66,6 +86,6 @@ export const Dashboard = () => {
             <Grid>
                 {orders && orders.map((order, i) => <OrderCard key={i} order={order} deleteOrder={deleteOrder}/>)}
             </Grid>
-        </div>
+        </PageContainer>
     );
 }

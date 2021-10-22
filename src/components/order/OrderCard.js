@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {Container, FormLabel, LoadingContainer, RemoveButton, Title} from './OrderFormStyles';
+import {Card, CardImg, Container, FormLabel, LoadingContainer, RemoveButton, Title} from './OrderFormStyles';
 import {BallTriangle} from "react-loading-icons";
+import pizzaPhoto from '../../pizzaCard.png'
 
 
 export const OrderCard = ({order, deleteOrder}) => {
@@ -27,22 +28,28 @@ export const OrderCard = ({order, deleteOrder}) => {
 
 
     return (
-        <Container>
-            <Title>Placed Order {order.Order_ID}</Title>
-            <FormLabel>Crust: {order.Crust}</FormLabel>
+        <Card>
+            <CardImg src={pizzaPhoto} alt="Avatar"/>
 
-            <FormLabel>Flavor: {order.Flavor}</FormLabel>
+            <Container>
 
-            <FormLabel>Size: {order.Size}</FormLabel>
+                <Title>Placed Order {order.Order_ID}</Title>
+                <FormLabel>Crust: {order.Crust}</FormLabel>
 
-            <FormLabel>Table Number: {order.Table_No}</FormLabel>
+                <FormLabel>Flavor: {order.Flavor}</FormLabel>
 
-            <RemoveButton onClick={(event) => handleClick(event, order.Order_ID)}> Cancel Order</RemoveButton>
-        </Container>
+                <FormLabel>Size: {order.Size}</FormLabel>
+
+                <FormLabel>Table Number: {order.Table_No}</FormLabel>
+
+                <RemoveButton onClick={(event) => handleClick(event, order.Order_ID)}> Cancel Order</RemoveButton>
+            </Container>
+        </Card>
     );
 }
 
 OrderCard.propTypes = {
+
     deleteOrder: PropTypes.func.isRequired,
     order: PropTypes.shape({
         Crust: PropTypes.string,
@@ -50,4 +57,4 @@ OrderCard.propTypes = {
         Size: PropTypes.string,
         Table_No: PropTypes.number
     })
-}
+};

@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import {loginUser} from '../api/auth';
 
 const Container = styled.div`
-    font-size: 1.5em;
-    text-align: center;
-    color: black;
-  `;
+  font-size: 1.5em;
+  text-align: center;
+  color: black;
+`;
 export const Login = ({setToken}) => {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();

@@ -5,11 +5,10 @@ export const Title = styled.h1`
 `;
 export const Container = styled.form`
   background: #000000;
-  border-radius: 25px;
-  max-width: 400px;
-  margin: 20px;
+  //border-radius: 25px;
+  //margin: 20px;
   padding: 20px;
-  border: 2px solid red;
+  //border: 2px solid red;
 `;
 
 export const FormInput = styled.input`
@@ -74,3 +73,20 @@ export const LoadingContainer = styled.div`
   justify-content: center;
   align-content: center;
 `;
+
+
+export const Card = styled.div`
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 75%;
+  align-content: center;
+  margin-bottom: 30px;
+  :hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+`;
+
+export const CardImg = styled.img`
+  width: 100%;
+  height: auto;
+`
