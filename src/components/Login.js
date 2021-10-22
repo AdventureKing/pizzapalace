@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {loginUser} from '../api/auth';
 
-const Title = styled.div`
+const Container = styled.div`
     font-size: 1.5em;
     text-align: center;
     color: black;
@@ -22,7 +22,7 @@ export const Login = ({setToken}) => {
   }
 
   return(
-    <Title>
+    <Container>
       <h1>Please Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -37,7 +37,7 @@ export const Login = ({setToken}) => {
           <button type="submit">Submit</button>
         </div>
       </form>
-    </Title>
+    </Container>
   );
 }
 

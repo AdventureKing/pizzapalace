@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 
 import {useToken} from './context/useToken';
+//jest.mock('./context/useToken');
 
 test('renders learn react link', () => {
   render(<App />);
