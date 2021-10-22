@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Simplert from 'react-simplert'
 import {deleteSpecificOrder, getOrders} from '../api/order';
 import {OrderCard} from './order/OrderCard';
-import {Container, LoadingContainer} from "./order/OrderFormStyles";
+import {LoadingContainer} from "./order/OrderFormStyles";
 import {BallTriangle} from "react-loading-icons";
 
 const Title = styled.h1`

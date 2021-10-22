@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Simplert from 'react-simplert'
 import {OrderForm} from './OrderForm';
-import {AddButton, Grid, RemoveButton, Title, PageContainer} from './OrderPageStyles'
+import {AddButton, Grid, PageContainer, RemoveButton, Title} from './OrderPageStyles'
 
 export const Orders = ({logout}) => {
     const [orders, setOrders] = useState(1);
