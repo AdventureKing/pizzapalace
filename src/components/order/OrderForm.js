@@ -17,9 +17,9 @@ export const OrderForm = ({setAlert}) => {
     const {token} = useToken();
     const [loading, setLoading] = useState(false);
     const createMessage = (response) => {
-        return 'Your order of ' + response + ' was placed. Sit Tight!'
+        return 'Your order of a' + response.Size + ' ' + response.Crust + ' ' + response.Flavor +' was placed. Sit Tight!'
     }
-    const onSubmit = async order => {
+    const onSubmit = async (order) => {
         setLoading(true);
         const response = await placeOrder(order, token);
         setLoading(false);
@@ -28,7 +28,7 @@ export const OrderForm = ({setAlert}) => {
     }
     if (loading) {
         return (
-            <Container onSubmit={handleSubmit(onSubmit)}>
+            <Container >
                 <LoadingContainer>
                     <BallTriangle/>
                 </LoadingContainer>

@@ -6,21 +6,25 @@ import {AddButton, Grid, PageContainer, RemoveButton, Title} from './OrderPageSt
 export const Orders = ({logout}) => {
     const [orders, setOrders] = useState(1);
     const [alert, setAlert] = useState({title: '', message: '', type: 'success', show: false});
+    const addOrder = () => {
 
+        return setOrders(orders + 1);
+    }
     const removeOrder = () => {
-        return orders.size !== 1 ? setOrders(orders - 1) : '';
+        return orders === 1 ? '' : setOrders(orders - 1);
     };
 
     return (
         <PageContainer>
             <Title>Place a order
-                <AddButton onClick={() => setOrders(orders + 1)}>Add Order</AddButton> <RemoveButton
-                    onClick={() => removeOrder()}> Remove Order</RemoveButton>
+                <AddButton onClick={addOrder}>Add Order</AddButton> <RemoveButton
+                    onClick={removeOrder}> Remove Order</RemoveButton>
                 <Simplert
                     showSimplert={alert.show}
                     type={alert.type}
                     title={alert.title}
                     message={alert.message}
+                    onClose={() => setAlert({title: '', message: '', type: 'success', show: false})}
                 />
             </Title>
             <Grid>

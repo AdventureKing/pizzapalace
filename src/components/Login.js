@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {loginUser} from '../api/auth';
+import {Card, Container, FormLabel, FormInput, Title, PageContainer, LogInButton} from "./LoginStyles";
+import {CardImg} from "./order/OrderFormStyles";
+import pizzaPhoto from "../pizzaCard.png";
 
-const Container = styled.div`
-  font-size: 1.5em;
-  text-align: center;
-  color: black;
-`;
+
+
 export const Login = ({setToken}) => {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
@@ -19,25 +18,30 @@ export const Login = ({setToken}) => {
             password
         });
         setToken(token);
+        window.location.href = 'dashboard';
+
     }
 
     return (
-        <Container>
-            <h1>Please Log In</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
+        <PageContainer>
+        <Card>
+            <CardImg src={pizzaPhoto} alt="Avatar"/>
+            <Container onSubmit={handleSubmit}>
+                <Title>Please Log In To Place a Order</Title>
+                <FormLabel>
                     <p>Username</p>
-                    <input type="text" onChange={e => setUserName(e.target.value)}/>
-                </label>
-                <label>
+                    <FormInput type="text" onChange={e => setUserName(e.target.value)}/>
+                </FormLabel>
+                <FormLabel>
                     <p>Password</p>
-                    <input type="password" onChange={e => setPassword(e.target.value)}/>
-                </label>
+                    <FormInput type="password" onChange={e => setPassword(e.target.value)}/>
+                </FormLabel>
                 <div>
-                    <button type="submit">Submit</button>
+                    <LogInButton type="submit">Log In</LogInButton>
                 </div>
-            </form>
-        </Container>
+            </Container>
+        </Card>
+        </PageContainer>
     );
 }
 
